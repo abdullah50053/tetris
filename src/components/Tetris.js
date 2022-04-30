@@ -54,7 +54,7 @@ const Tetris = () => {
 
   const drop = () => {
     // Increase level when player has cleared 10 rows
-    if (rows > (level + 1) * 10) {
+    if (rows > (level + 1) * 5) {
       setLevel(prev => prev + 1);
       // Also increase speed
       setDropTime(1000 / (level + 1) + 200);
@@ -66,6 +66,7 @@ const Tetris = () => {
       // Game over!
       if (player.pos.y < 1) {
         console.log('GAME OVER!!!');
+        console.log(score);
         setGameOver(true);
         setDropTime(null);
       }
@@ -111,7 +112,10 @@ const Tetris = () => {
         <Stage stage={stage} />
         <aside>
           {gameOver ? (
+            <div>
+            <Display text={`Score: ${score}`} />
             <Display gameOver={gameOver} text="Game Over" />
+          </div>
           ) : (
             <div>
               <Display text={`Score: ${score}`} />
